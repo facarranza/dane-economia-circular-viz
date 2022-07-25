@@ -14,8 +14,7 @@ Email                : fcarranza@protonmail.com
 __author__ = 'Felipe Carranza'
 __date__ = 'July 2022'
 __copyright__ = '(C) 2022, Felipe Carranza'"
-#TODO: improve temporal variables, order,  add custom labels, colors and fonts to graphs
-
+#TODO: improve temporal variables and comments
 
 
 ##############
@@ -41,7 +40,6 @@ str(data)
 temp= data %>% dplyr::filter(is.na(`Nombre del indicador`)==FALSE)
 #Searching NULL values
 gg_miss_var(temp)
-#TODO:#TODO: Label values, label axis, colors, font, order
 
 opt_list = list(hor_title="Año",
                 ver_title="Reservas mineras", text_family="Open Sans", text_size="17",
@@ -64,7 +62,9 @@ htmlwidgets::saveWidget(gr1, "disponibilidad_reservas.html",background = "transp
 # saveRDS(gr1,"temporal_img_1")
 # library(savewidgets)
 # install.packages("html")
-############
+
+
+####################################################
 #Grafica #2
 url3="https://docs.google.com/spreadsheets/d/1s3RPwgNdPrTVq0kARqZwTSoKzk-8jGC5Ed2_ERXJoIg/edit#gid=2053630180"
 data3<- read_sheet(url3,sheet=3)
@@ -81,7 +81,6 @@ opt_list$hor_title <-"Años"
 opt_list$ver_title <- "Índice base 100"
 opt_list$label_wrap_legend = 50
 temp3 = temp3 %>% filter(`Variable asociada` %like% 'ndice') %>%     select(`Variable asociada`,Años,Valor)
-
 temp3$`Variable asociada` <-  gsub(" Índices en base 100=2005", "", temp3$`Variable asociada`)
 # unique(temp3$`Variable asociada`)
 gr2 = hgch_line_CatYeaNum(temp3,
@@ -98,7 +97,6 @@ htmlwidgets::saveWidget(gr2, "indices_base.html",background = "transparent")
 
 #################################################
 #Gráfica #3
-
 
 url3="https://docs.google.com/spreadsheets/d/1s3RPwgNdPrTVq0kARqZwTSoKzk-8jGC5Ed2_ERXJoIg/edit#gid=2053630180"
 data4<- read_sheet(url3,sheet=6)
